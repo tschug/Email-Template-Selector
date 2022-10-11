@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>55.0</apiVersion>
+    <isExposed>true</isExposed>
+    <masterLabel>Email Template Selector</masterLabel>
+    <description>Used to search for and select an Email Template and map the id to a custom field on a record.</description>
+    <targets>
+        <target>lightning__RecordPage</target>
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightning__RecordPage">
+            <property 
+                label="Mapped Field" 
+                name="mappedField"
+                type="String" 
+                description="Field API Name which should store the Email Template RecordId"
+                placeholder="Example: Email_Template__c"
+                required="true"
+            />
+            <property 
+                label="Where Clause"
+                name="whereClause"
+                type="String"
+                description="(Optional) Where clause to be used by the SOSL search"
+                placeholder="Example: UiType != 'Aloha' AND IsActive = true"
+            />
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>

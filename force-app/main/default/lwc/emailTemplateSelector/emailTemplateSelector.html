@@ -1,0 +1,86 @@
+<template>
+  <lightning-card
+    title="Email Template Selector"
+    icon-name="standard:email"
+    variant="Narrow"
+  >
+    <div class="slds-var-p-horizontal_small">
+      <c-lookup
+        selection={initialSelection}
+        errors={errors}
+        onsearch={handleLookupSearch}
+        onselectionchange={handleLookupSelectionChange}
+        label="Email Template"
+        placeholder="Search Email Templates"
+        is-multi-entry={isMultiEntry}
+        new-record-options={newRecordOptions}
+        class="slds-var-p-horizontal_small"
+      >
+      </c-lookup>
+      <template if:true={showPreview}>
+      <lightning-accordion
+        class="email-selector-accordion"
+        active-section-name={accordionActiveSections}
+        allow-multiple-sections-open
+        onsectiontoggle={handleSetActiveSection}
+      >
+        <lightning-accordion-section name="A" label="Details" >
+            <div class="slds-align_absolute-center">
+              <template if:false={templatePreview.IsActive}>
+                <lightning-badge
+                    label="Inactive Template"
+                    class="slds-badge slds-theme_error slds-var-p-left_small"
+                ></lightning-badge>
+              </template>
+            </div>
+            <br/>
+            <lightning-icon
+            icon-name={templatePreview.TemplateType}
+            title={templatePreview.TemplateTypeName}
+            size="small"
+            class="slds-var-m-right_small"
+          ></lightning-icon>
+          <lightning-formatted-url
+            value={templatePreview.Id}
+            label={templatePreview.Name}
+            target="_blank"
+          ></lightning-formatted-url>
+          <br />
+          <lightning-icon
+            icon-name="doctype:folder"
+            alternative-text="Folder"
+            size="small"
+            class="slds-var-m-right_small"
+          ></lightning-icon>
+          {templatePreview.FolderName}<br />
+          <lightning-avatar
+            src="/bad/image/url.jpg"
+            initials={templatePreview.TimesUsed}
+            fallback-icon-name="custom:custom92"
+            alternative-text="Times Used"
+            class="slds-var-m-right_small"
+            size="small"
+          ></lightning-avatar
+          ><b>Last Used Date:</b> {templatePreview.LastUsedDate}<br />
+          <b>Subject:</b> {templatePreview.Subject}<br />
+          <b>Description:</b> {templatePreview.Description}<br />
+          <b>Letterhead:</b>&nbsp; 
+          <tempalte if:false={showLetterhead}>
+            N/A<br/>
+          </tempalte>
+          <template if:true={showLetterhead}>
+          <lightning-formatted-url
+            value={templatePreview.LetterheadId}
+            label={templatePreview.LetterheadName}
+            target="_blank"
+          ></lightning-formatted-url><br />
+            </template>
+          <b>Related Entity</b> {templatePreview.RelatedEntityType}<br />
+          <b>Created Date</b> {templatePreview.CreatedDate}<br />
+          <b>Last Modified Date</b> {templatePreview.LastModifiedDate}<br />
+        </lightning-accordion-section>
+      </lightning-accordion>
+    </template>
+    </div>
+  </lightning-card>
+</template>
