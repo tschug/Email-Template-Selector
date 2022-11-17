@@ -95,7 +95,7 @@ export default class EmailTemplateSelector extends LightningElement {
             console.log(this.templateValue);
             if(this.templateValue != null){
                 this.initLookupResult();
-                this.assignPreviewData();
+                // this.assignPreviewData();
             }
         }
     }
@@ -209,7 +209,7 @@ export default class EmailTemplateSelector extends LightningElement {
             if(selection.length) {
                 // Assigning Selection
                 this.templateValue = selection[0];
-                this.showPreview = true;
+                // this.showPreview = true;
             } else {
                 // Clearing Selection
                 this.templateValue = null;
